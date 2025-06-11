@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axum | {{ title }}</title>
+</head>
+<body class="w-full flex flex-col items-center justify-center">
+  {% include "header.html" %}
+  <main class="max-w-[1024px] w-full">
+    <table class="w-full">
+      <thead class="bg-gray-200">
+        <tr class="">
+          <th class="px-4 py-2 text-left">Nome</th>
+          <th class="px-4 py-2 text-left">Email</th>
+          <th class="px-4 py-2 text-left">Editar</th>
+          <th class="px-4 py-2 text-left">Excluir</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- {% block content %} -->
+          {% for user in users %}
+          <tr class="text-left">
+            <td class="px-4 py-2 text-left">{{user.name}}</td>
+            <td class="px-4 py-2 text-left">{{user.email}}</td>
+            <td class="px-4 py-2 text-left cursor-pointer"><a class="" href="/users/{{user.id}}/update">Editar</a></td>
+            <td class="px-4 py-2 text-left ">
+              <form action="/users/{{user.id}}/delete" method="POST" style="display:inline;">
+                  <button type="submit" class="cursor-pointer" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️ Excluir</button>
+                </form>
+            </td>
+          </tr>
+          {% endfor %}
+        <!-- {% endblock content %} -->
+      </tbody>
+    </table>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</body>
+</html>
